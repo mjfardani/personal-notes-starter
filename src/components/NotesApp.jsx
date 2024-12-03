@@ -2,21 +2,25 @@ import React from 'react';
 import Navbar from './Navbar/Navbar';
 import SearchBar from './SearchBar/SearchBar';
 import Toogle from './Toogle/Toogle';
-import Card from './Cards/Card';
+import CardList from './Cards/CardList';
+import {getInitialData, showFormattedDate} from '../utils/index.js';
 
 
 class NotesApp extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            notes: getInitialData(),
+        }
+    }
     render() {
         return (
         <div>
             <Navbar/>
             <SearchBar/>
             <Toogle/>
-            <div className='grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-2 px-3 py-2'>
-                <Card/>
-                <Card/>
-                <Card/>
-            </div>
+        <CardList notes={this.state.notes} />
+        <CardList notes={this.state.notes} />
         </div>
         )
     }
