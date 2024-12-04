@@ -3,10 +3,11 @@ import Navbar from './Navbar/Navbar';
 import SearchBar from './SearchBar/SearchBar';
 import Toogle from './Toogle/Toogle';
 import CardList from './Cards/CardList';
-import {getInitialData, showFormattedDate} from '../utils/index.js';
+import { getInitialData, showFormattedDate } from '../utils/index.js';
 
 
 class NotesApp extends React.Component {
+
     constructor(props) {
         super(props);
         this.state = {
@@ -15,13 +16,15 @@ class NotesApp extends React.Component {
     }
     render() {
         return (
-        <div>
-            <Navbar/>
-            <SearchBar/>
-            <Toogle/>
-        <CardList notes={this.state.notes} />
-        <CardList notes={this.state.notes} />
-        </div>
+            <div>
+                <Navbar />
+                <div>
+                    <SearchBar />
+                </div>
+                <Toogle />
+                <CardList notes={this.state.notes} />
+
+            </div>
         )
     }
 }
