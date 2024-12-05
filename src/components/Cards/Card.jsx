@@ -9,7 +9,7 @@ function Card({ note }) {
         className="hover:animate-background rounded-xl bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 p-0.5 shadow-xl transition hover:bg-[length:400%_400%] hover:shadow-sm hover:[animation-duration:_4s]"
       >
         <div className="rounded-[10px] bg-white p-4 !pt-20 sm:p-6">
-          <time datetime={note.createdAt} className="block text-xs text-gray-500">  {showFormattedDate(note.createdAt)} </time>
+          <time dateTime={note.createdAt} className="block text-xs text-gray-500">  {showFormattedDate(note.createdAt)} </time>
 
           <a href="#">
             <h3 className="mt-0.5 text-lg font-medium text-gray-900">
