@@ -15,6 +15,7 @@ class SearchBar extends React.Component {
                     type="text"
                     placeholder="Search Note"
                     className="border w-full rounded-md border-gray-200 bg-white p-3 text-gray-700 transition hover:scale-10 hover:shadow-xl focus:border-white focus:outline-none focus:ring focus:active:text-indigo-500"
+                    onChange={(e) => this.props.onSearch(e.target.value)} // Mengirimkan nilai pencarian ke NotesApp
                   />
                 </div>
               </form>

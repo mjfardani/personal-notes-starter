@@ -10,17 +10,25 @@ class NotesApp extends React.Component {
         super(props);
         this.state = {
             notes: getInitialData(),
-            activeTab: 'all', // Default tab
+            activeTab: 'all', // Tab aktif default
+            searchQuery: '', // State untuk kata kunci pencarian
         };
+
         this.onDeleteHandler = this.onDeleteHandler.bind(this);
         this.onAddNoteHandler = this.onAddNoteHandler.bind(this);
         this.toggleArchived = this.toggleArchived.bind(this);
-        this.switchTab = this.switchTab.bind(this); // Fungsi untuk berpindah tab
+        this.switchTab = this.switchTab.bind(this);
+        this.handleSearch = this.handleSearch.bind(this); // Menambahkan metode untuk pencarian
     }
 
     // Fungsi untuk berpindah tab
     switchTab(tab) {
         this.setState({ activeTab: tab });
+    }
+
+    // Fungsi untuk menangani perubahan pencarian
+    handleSearch(query) {
+        this.setState({ searchQuery: query });
     }
 
     onAddNoteHandler(newNote) {
@@ -43,18 +51,24 @@ class NotesApp extends React.Component {
     }
 
     render() {
-        const { notes, activeTab } = this.state;
+        const { notes, activeTab, searchQuery } = this.state;
 
         // Filter catatan berdasarkan tab aktif
-        const filteredNotes = activeTab === 'archived'
+        let filteredNotes = activeTab === 'archived'
             ? notes.filter(note => note.archived)
             : notes.filter(note => !note.archived);
+
+        // Filter catatan berdasarkan pencarian
+        filteredNotes = filteredNotes.filter(note =>
+            note.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            note.body.toLowerCase().includes(searchQuery.toLowerCase())
+        );
 
         return (
             <div>
                 <Navbar />
                 <div>
-                    <SearchBar addNote={this.onAddNoteHandler} />
+                    <SearchBar onSearch={this.handleSearch} addNote={this.onAddNoteHandler} />
                 </div>
                 <Toogle switchTab={this.switchTab} />
                 <CardList
