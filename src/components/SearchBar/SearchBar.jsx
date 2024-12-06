@@ -18,7 +18,7 @@ class SearchBar extends React.Component {
                   />
                 </div>
               </form>
-              {/* Kirimkan addNote dari props NotesApp */}
+
               <AddNote addNote={this.props.addNote} />
             </div>
           </div>

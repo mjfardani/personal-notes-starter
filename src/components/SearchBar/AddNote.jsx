@@ -1,18 +1,34 @@
 import React, { useState } from 'react';
 
-const AddNote = ({ addNote }) => {
+function AddNote({ addNote }) {
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [isPopupOpen, setIsPopupOpen] = useState(false); // Tambahkan state untuk popup
 
-  const openPopup = () => setIsPopupOpen(true);
-  const closePopup = () => setIsPopupOpen(false);
+  // Fungsi untuk membuka popup
+  function openPopup() {
+    setIsPopupOpen(true);
+  }
 
-  const handleTitleChange = (e) => setTitle(e.target.value);
-  const handleBodyChange = (e) => setBody(e.target.value);
+  // Fungsi untuk menutup popup
+  function closePopup() {
+    setIsPopupOpen(false);
+  }
 
-  const handleSubmit = (e) => {
+  // Fungsi untuk menangani perubahan pada input title
+  function handleTitleChange(e) {
+    setTitle(e.target.value);
+  }
+
+  // Fungsi untuk menangani perubahan pada input body
+  function handleBodyChange(e) {
+    setBody(e.target.value);
+  }
+
+  // Fungsi untuk menangani submit form
+  function handleSubmit(e) {
     e.preventDefault();
+
     if (title === '' || body === '') {
       alert('Harap isi semua kolom!');
       return;
@@ -22,14 +38,16 @@ const AddNote = ({ addNote }) => {
       title,
       body,
       createdAt: new Date().toDateString(),
-      id: Date.now(), // ID unik berdasarkan waktu
+      id: Date.now(),
+      archived: false // ID unik berdasarkan waktu
     };
 
     addNote(newNote); // Panggil addNote dari props
     setTitle('');
     setBody('');
     setIsPopupOpen(false); // Menutup popup setelah submit
-  };
+    console.log(newNote);
+  }
 
   return (
     <div className="relative">
@@ -51,7 +69,7 @@ const AddNote = ({ addNote }) => {
             </button>
 
             <h1 className="text-center text-2xl font-bold text-indigo-600 sm:text-3xl">
-              Get started today
+              Add Your Note
             </h1>
             <form onSubmit={handleSubmit} className="mb-0 mt-6 space-y-4">
               <div>
@@ -96,6 +114,6 @@ const AddNote = ({ addNote }) => {
       )}
     </div>
   );
-};
+}
 
 export default AddNote;
