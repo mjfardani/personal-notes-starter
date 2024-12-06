@@ -56,7 +56,7 @@ class NotesApp extends React.Component {
                 <div>
                     <SearchBar addNote={this.onAddNoteHandler} />
                 </div>
-                <Toogle switchTab={this.switchTab} /> {/* Kirimkan switchTab ke Toogle */}
+                <Toogle switchTab={this.switchTab} />
                 <CardList
                     notes={filteredNotes}
                     onDelete={this.onDeleteHandler}
